@@ -1,0 +1,50 @@
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "tailwindcss";
+
+@theme {
+  --*: initial;
+
+  --font-body: "Plus Jakarta Sans", sans-serif;
+
+  --color-lime: oklch(0.86 0.18 110.66);
+  --color-white: oklch(1 0 0);
+  --color-red: oklch(0.58 0.2 28.91);
+
+  --color-slate-900: oklch(0.3 0.05 236.99);
+  --color-slate-700: oklch(0.52 0.04 229.22);
+  --color-slate-500: oklch(0.64 0.05 229.64);
+  --color-slate-300: oklch(0.78 0.05 236.33);
+  --color-slate-100: oklch(0.96 0.02 232.13);
+
+  --spacing-500: 40px;
+  --spacing-400: 32px;
+  --spacing-300: 24px;
+  --spacing-200: 16px;
+  --spacing-150: 12px;
+  --spacing-100: 8px;
+
+  --text-preset-1: 56px;
+  --text-preset-1--line-height: 125%;
+  --text-preset-1--letter-spacing: -1px;
+  --text-preset-1--font-weight: bold;
+
+  --text-preset-2: 24px;
+  --text-preset-2--line-height: 125%;
+  --text-preset-2--letter-spacing: -1px;
+  --text-preset-2--font-weight: bold;
+
+  --text-preset-3: 18px;
+  --text-preset-3--line-height: 125%;
+  --text-preset-3--letter-spacing: -1px;
+  --text-preset-3--font-weight: bold;
+
+  --text-preset-4: 16px;
+  --text-preset-4--line-height: 150%;
+  --text-preset-4--letter-spacing: 0px;
+  --text-preset-4--font-weight: medium;
+
+  --text-preset-5: 14px;
+  --text-preset-5--line-height: 150%;
+  --text-preset-5--letter-spacing: 0px;
+  --text-preset-5--font-weight: medium;
+}
