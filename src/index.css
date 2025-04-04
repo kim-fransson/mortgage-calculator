@@ -2,9 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --*: initial;
-
-  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-plus-jakarta-sans: "Plus Jakarta Sans Variable", sans-serif;
 
   --color-lime: oklch(0.86 0.18 110.66);
   --color-white: oklch(1 0 0);
@@ -22,6 +20,9 @@
   --spacing-200: 16px;
   --spacing-150: 12px;
   --spacing-100: 8px;
+
+  --radius-100: 4px;
+  --radius-300: 24px;
 
   --text-preset-1: 56px;
   --text-preset-1--line-height: 125%;
