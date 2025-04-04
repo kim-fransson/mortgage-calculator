@@ -17,9 +17,29 @@ function App() {
           </header>
 
           <Form className="grid gap-300">
-            <NumberField label="Mortgage Amount" prefix="£" />
-            <NumberField label="Mortgage Term" postfix="years" />
-            <NumberField label="Interest Rate" postfix="%" />
+            <NumberField
+              isRequired
+              name="mortgageAmount"
+              label="Mortgage Amount"
+              prefix="£"
+              minValue={0}
+            />
+            <NumberField
+              isRequired
+              name="mortgageTerm"
+              label="Mortgage Term"
+              postfix="years"
+              minValue={0}
+              maxValue={99}
+            />
+            <NumberField
+              isRequired
+              name="interestRate"
+              label="Interest Rate"
+              postfix="%"
+              minValue={0}
+              maxValue={100}
+            />
 
             <RadioGroup label="Mortgage Type" isRequired>
               <Radio value="repayment">Repayment</Radio>

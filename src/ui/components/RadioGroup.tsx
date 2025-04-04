@@ -1,13 +1,12 @@
 import { ReactNode } from "react";
 import {
-  FieldError,
   Radio as AriaRadio,
   RadioGroup as AriaRadioGroup,
   RadioGroupProps as AriaRadioGroupProps,
   RadioProps,
   ValidationResult,
 } from "react-aria-components";
-import { Label } from "./Field";
+import { Label, FieldError } from "./Field";
 import { classNames, fieldBorderStyles, focusRing } from "../../utils";
 
 export interface RadioGroupProps extends Omit<AriaRadioGroupProps, "children"> {

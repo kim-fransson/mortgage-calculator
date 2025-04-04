@@ -5,6 +5,8 @@ import {
   InputProps,
   GroupProps,
   Group,
+  FieldErrorProps,
+  FieldError as AriaFieldError,
 } from "react-aria-components";
 
 import { classNames, fieldBorderStyles, focusRing } from "../../utils";
@@ -39,6 +41,10 @@ export function FieldGroup(props: GroupProps) {
       }
     />
   );
+}
+
+export function FieldError(props: FieldErrorProps) {
+  return <AriaFieldError {...props} className={"text-preset-5 text-red"} />;
 }
 
 export function Input(props: InputProps) {

@@ -4,7 +4,7 @@ export function classNames(...classes: (string | boolean | undefined)[]) {
 
 export function focusRing(isFocusVisible?: boolean) {
   return isFocusVisible
-    ? "outline-lime outline-offset-2 outline-2"
+    ? "outline-blue-600 outline-offset-2 outline-2"
     : "outline-0";
 }
 

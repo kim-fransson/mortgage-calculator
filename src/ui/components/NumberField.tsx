@@ -1,11 +1,10 @@
 import {
   NumberField as AriaNumberField,
   NumberFieldProps as AriaNumberFieldProps,
-  FieldError,
   ValidationResult,
 } from "react-aria-components";
 
-import { FieldGroup, Label, Input } from "./Field";
+import { FieldGroup, Label, Input, FieldError } from "./Field";
 import { classNames } from "../../utils";
 
 interface NumberFieldProps extends AriaNumberFieldProps {
@@ -26,12 +25,13 @@ export const NumberField = ({
     <AriaNumberField {...props} className={"grid gap-150"}>
       <Label>{label}</Label>
       <FieldGroup>
-        {({ isFocusVisible, isFocusWithin }) => (
+        {({ isFocusVisible, isFocusWithin, isInvalid }) => (
           <>
             {prefix && (
               <FieldFix
                 isFocusVisible={isFocusVisible}
                 isFocusWithin={isFocusWithin}
+                isInvalid={isInvalid}
                 value={prefix}
               />
             )}
@@ -40,6 +40,7 @@ export const NumberField = ({
               <FieldFix
                 isFocusVisible={isFocusVisible}
                 isFocusWithin={isFocusWithin}
+                isInvalid={isInvalid}
                 value={postfix}
               />
             )}
@@ -54,15 +55,23 @@ export const NumberField = ({
 interface FieldFixProps {
   isFocusVisible?: boolean;
   isFocusWithin?: boolean;
+  isInvalid?: boolean;
   value: string;
 }
 
-const FieldFix = ({ isFocusVisible, isFocusWithin, value }: FieldFixProps) => {
+const FieldFix = ({
+  isFocusVisible,
+  isFocusWithin,
+  isInvalid,
+  value,
+}: FieldFixProps) => {
   return (
     <div
       className={classNames(
         "text-center text-preset-3 px-200 py-150",
-        isFocusVisible || isFocusWithin
+        isInvalid
+          ? "bg-red text-white"
+          : isFocusVisible || isFocusWithin
           ? "bg-lime text-slate-900"
           : "bg-slate-100 text-slate-700"
       )}
