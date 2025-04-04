@@ -4,11 +4,9 @@ import {
   FieldError,
   ValidationResult,
 } from "react-aria-components";
-import { twJoin } from "tailwind-merge";
 
 import { FieldGroup, Label, Input } from "./Field";
-
-import { composeTailwindRenderProps } from "../../utils";
+import { classNames } from "../../utils";
 
 interface NumberFieldProps extends AriaNumberFieldProps {
   label?: string;
@@ -18,7 +16,6 @@ interface NumberFieldProps extends AriaNumberFieldProps {
 }
 
 export const NumberField = ({
-  className,
   label,
   errorMessage,
   prefix,
@@ -26,10 +23,7 @@ export const NumberField = ({
   ...props
 }: NumberFieldProps) => {
   return (
-    <AriaNumberField
-      {...props}
-      className={composeTailwindRenderProps(className, "grid gap-150")}
-    >
+    <AriaNumberField {...props} className={"grid gap-150"}>
       <Label>{label}</Label>
       <FieldGroup>
         {({ isFocusVisible, isFocusWithin }) => (
@@ -66,7 +60,7 @@ interface FieldFixProps {
 const FieldFix = ({ isFocusVisible, isFocusWithin, value }: FieldFixProps) => {
   return (
     <div
-      className={twJoin(
+      className={classNames(
         "text-center text-preset-3 px-200 py-150",
         isFocusVisible || isFocusWithin
           ? "bg-lime text-slate-900"

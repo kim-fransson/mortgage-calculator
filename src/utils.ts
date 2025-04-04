@@ -1,9 +1,14 @@
-import { composeRenderProps } from "react-aria-components";
-import { twJoin } from "tailwind-merge";
+export function classNames(...classes: (string | boolean | undefined)[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
-export function composeTailwindRenderProps<T>(
-  className: string | ((v: T) => string) | undefined,
-  tw: string
-): string | ((v: T) => string) {
-  return composeRenderProps(className, (className) => twJoin(tw, className));
+export function focusRing(isFocusVisible?: boolean) {
+  return isFocusVisible
+    ? "outline-lime outline-offset-2 outline-2"
+    : "outline-0";
+}
+
+export function fieldBorderStyles(isActive?: boolean, isInvalid?: boolean) {
+  if (isInvalid) return "border-red";
+  return isActive ? "border-lime" : "border-slate-500";
 }

@@ -5,39 +5,38 @@ import {
   InputProps,
   GroupProps,
   Group,
-  composeRenderProps,
 } from "react-aria-components";
-import { twJoin } from "tailwind-merge";
-import { tv } from "tailwind-variants";
 
-import { fieldBorderStyles, focusRing } from "../../styles";
-import { composeTailwindRenderProps } from "../../utils";
+import { classNames, fieldBorderStyles, focusRing } from "../../utils";
 
 export const Label = (props: LabelProps) => {
   return (
     <AriaLabel
       {...props}
-      className={twJoin(
-        props.className,
-        "text-preset-4 text-slate-700 cursor-pointer"
-      )}
+      className={"text-preset-4 text-slate-700 cursor-pointer"}
     ></AriaLabel>
   );
 };
 
-const fieldGroupStyles = tv({
-  extend: focusRing,
-  base: "group flex border border-slate-500 h-12 rounded-100 overflow-hidden",
-  variants: fieldBorderStyles.variants,
-});
+const fieldGroupStyles = (
+  isFocusWithin: boolean,
+  isInvalid: boolean,
+  isFocusVisible: boolean
+) => {
+  return classNames(
+    "group flex border h-12 rounded-100 overflow-hidden",
+    fieldBorderStyles(isFocusWithin, isInvalid),
+    focusRing(isFocusVisible)
+  );
+};
 
 export function FieldGroup(props: GroupProps) {
   return (
     <Group
       {...props}
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        fieldGroupStyles({ ...renderProps, className })
-      )}
+      className={({ isFocusVisible, isInvalid, isFocusWithin }) =>
+        fieldGroupStyles(isFocusWithin, isInvalid, isFocusVisible)
+      }
     />
   );
 }
@@ -46,10 +45,7 @@ export function Input(props: InputProps) {
   return (
     <AriaInput
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        `min-w-0 outline-none flex-1 px-200 text-preset-3 text-slate-900 selection:bg-lime`
-      )}
+      className={`min-w-0 outline-none flex-1 px-200 text-preset-3 text-slate-900 selection:bg-lime`}
     />
   );
 }

@@ -1,6 +1,6 @@
 import { FaCalculator } from "react-icons/fa";
-
 import { Form } from "react-aria-components";
+
 import { NumberField, Radio, RadioGroup, Button } from "./ui";
 
 function App() {
