@@ -4,12 +4,14 @@ import { Form } from "react-aria-components";
 import { NumberField, Radio, RadioGroup, Button } from "../ui";
 import { classNames } from "../utils";
 
-export const MortgageCalculator = () => {
+export const MortgageCalculator = ({ className }: { className?: string }) => {
   return (
     <article
       className={classNames(
+        className,
         "bg-white px-300 py-400 space-y-300",
-        "md:px-400 md:space-y-400"
+        "md:px-400 md:space-y-400",
+        "lg:space-x-500"
       )}
     >
       <header
@@ -57,8 +59,11 @@ export const MortgageCalculator = () => {
           <Radio value="interests">Interests Only</Radio>
         </RadioGroup>
 
-        <Button type="submit" className="md:mt-200">
-          <FaCalculator size={24} />
+        <Button
+          type="submit"
+          className="md:mt-200 lg:col-span-full lg:max-w-xs lg:mt-0"
+        >
+          <FaCalculator size={24} className="shrink-0" />
           Calculate Repayments
         </Button>
       </Form>

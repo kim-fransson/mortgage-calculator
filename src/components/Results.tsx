@@ -5,18 +5,21 @@ export const Results = () => {
   return (
     <article
       className={classNames(
-        "grid bg-slate-900 px-300 py-400 gap-300 justify-items-center",
-        "md:p-500 md:gap-500"
+        "grid bg-slate-900 px-300 py-400",
+        "md:p-500",
+        "lg:rounded-bl-[80px]"
       )}
     >
-      <img src={illustrationEmpty} width={192} height={192} />
-      <h2 className="text-center text-white text-preset-2">
-        Results shown here
-      </h2>
-      <p className="text-center text-slate-300 text-preset-4">
-        Complete the form and click “calculate repayments” to see what your
-        monthly repayments would be.
-      </p>
+      <div className="grid place-items-center place-content-center gap-300">
+        <img src={illustrationEmpty} width={192} height={192} />
+        <h2 className="text-center text-white text-preset-2">
+          Results shown here
+        </h2>
+        <p className="text-center text-slate-300 text-preset-4">
+          Complete the form and click “calculate repayments” to see what your
+          monthly repayments would be.
+        </p>
+      </div>
     </article>
   );
 };
