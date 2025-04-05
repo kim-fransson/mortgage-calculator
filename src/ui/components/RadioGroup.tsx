@@ -14,11 +14,15 @@ export interface RadioGroupProps extends Omit<AriaRadioGroupProps, "children"> {
   children?: ReactNode;
   description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);
+  className?: string;
 }
 
 export function RadioGroup(props: RadioGroupProps) {
   return (
-    <AriaRadioGroup {...props} className={"group grid gap-150 "}>
+    <AriaRadioGroup
+      {...props}
+      className={classNames(props.className, "group grid gap-150")}
+    >
       <Label>{props.label}</Label>
       <div className="grid gap-150 text-slate-900 text-preset-3">
         {props.children}

@@ -12,6 +12,7 @@ interface NumberFieldProps extends AriaNumberFieldProps {
   errorMessage?: string | ((validation: ValidationResult) => string);
   postfix?: string;
   prefix?: string;
+  className?: string;
 }
 
 export const NumberField = ({
@@ -19,10 +20,14 @@ export const NumberField = ({
   errorMessage,
   prefix,
   postfix,
+  className,
   ...props
 }: NumberFieldProps) => {
   return (
-    <AriaNumberField {...props} className={"grid gap-150"}>
+    <AriaNumberField
+      {...props}
+      className={classNames(className, "grid gap-150")}
+    >
       <Label>{label}</Label>
       <FieldGroup>
         {({ isFocusVisible, isFocusWithin, isInvalid }) => (

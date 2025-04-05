@@ -6,6 +6,7 @@ import { classNames, focusRing } from "../../utils";
 
 export interface ButtonProps extends AriaButtonProps {
   variant?: "primary" | "secondary";
+  className?: string;
 }
 
 export const Button = ({ variant = "primary", ...props }: ButtonProps) => {
@@ -14,6 +15,7 @@ export const Button = ({ variant = "primary", ...props }: ButtonProps) => {
       {...props}
       className={(renderProps) =>
         classNames(
+          props.className,
           focusRing(renderProps.isFocusVisible),
           "cursor-pointer flex items-center justify-center gap-3",
           variant === "primary"
