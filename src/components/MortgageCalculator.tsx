@@ -3,8 +3,59 @@ import { Form } from "react-aria-components";
 
 import { NumberField, Radio, RadioGroup, Button } from "../ui";
 import { classNames } from "../utils";
+import { FormEvent, useRef } from "react";
 
-export const MortgageCalculator = ({ className }: { className?: string }) => {
+type MortgageType = "repayment" | "interests";
+
+export type MortgageFormData = {
+  mortgageAmount: number;
+  mortgageTerm: number;
+  interestRate: number;
+  mortgageType: MortgageType;
+};
+
+interface MortgageCalculatorProps {
+  className?: string;
+  onClear?: () => void;
+  onCalculate?: (data: MortgageFormData) => void;
+}
+
+export const MortgageCalculator = ({
+  className,
+  onClear,
+  onCalculate,
+}: MortgageCalculatorProps) => {
+  const form = useRef<HTMLFormElement>(null);
+
+  const handleCalculate = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<
+      string,
+      string
+    >;
+
+    const mortgageData: MortgageFormData = {
+      mortgageAmount: Number.parseFloat(data.mortgageAmount),
+      mortgageTerm: Number.parseInt(data.mortgageTerm),
+      interestRate: Number.parseFloat(data.interestRate),
+      mortgageType: data.mortgageType as MortgageType,
+    };
+
+    if (onCalculate) {
+      onCalculate(mortgageData);
+    }
+  };
+
+  const handleClear = () => {
+    if (onClear) {
+      onClear();
+    }
+
+    if (form && form.current) {
+      form.current.reset();
+    }
+  };
+
   return (
     <article
       className={classNames(
@@ -21,10 +72,16 @@ export const MortgageCalculator = ({ className }: { className?: string }) => {
         )}
       >
         <h2 className="text-preset-2 text-slate-900">Mortgage Calculator</h2>
-        <Button variant="secondary">Clear all</Button>
+        <Button onPress={handleClear} variant="secondary">
+          Clear all
+        </Button>
       </header>
 
-      <Form className={classNames("grid gap-300", "md:grid-cols-2")}>
+      <Form
+        ref={form}
+        onSubmit={handleCalculate}
+        className={classNames("grid gap-300", "md:grid-cols-2")}
+      >
         <NumberField
           isRequired
           name="mortgageAmount"
@@ -53,6 +110,7 @@ export const MortgageCalculator = ({ className }: { className?: string }) => {
         <RadioGroup
           className="md:col-span-full"
           label="Mortgage Type"
+          name="mortgageType"
           isRequired
         >
           <Radio value="repayment">Repayment</Radio>
