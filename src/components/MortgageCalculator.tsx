@@ -81,6 +81,9 @@ export const MortgageCalculator = ({
           prefix="£"
           minValue={0}
           className="md:col-span-full"
+          validate={(value) =>
+            value < 1000 ? "Mortgage amount must be greater than £1,000." : null
+          }
         />
         <NumberField
           isRequired
@@ -88,7 +91,9 @@ export const MortgageCalculator = ({
           label="Mortgage Term"
           postfix="years"
           minValue={0}
-          maxValue={99}
+          validate={(value) =>
+            value === 0 ? "Mortgage term must be between 1 and 40 years." : null
+          }
         />
         <NumberField
           isRequired
@@ -96,14 +101,18 @@ export const MortgageCalculator = ({
           label="Interest Rate"
           postfix="%"
           minValue={0}
-          maxValue={100}
+          validate={(value) =>
+            value < 0.1 || value > 25
+              ? "Interest rate must be between 0.1% and 25%."
+              : null
+          }
         />
 
         <RadioGroup
           className="md:col-span-full"
           label="Mortgage Type"
           name="mortgageType"
-          isRequired
+          defaultValue="repayment"
         >
           <Radio value="repayment">Repayment</Radio>
           <Radio value="interests">Interests Only</Radio>

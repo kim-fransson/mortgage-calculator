@@ -40,7 +40,7 @@ export const Results = ({ repayments }: ResultsProps) => {
               </span>
             </div>
 
-            <Separator className="text-[#9ABED5]/25 my-200" />
+            <Separator className="text-[#9ABED5]/25 my-200 md:my-400" />
 
             <div className="space-y-100">
               <h3 className="text-preset-4 text-slate-300">
