@@ -4,7 +4,7 @@ import { Form } from "react-aria-components";
 import { NumberField, Radio, RadioGroup, Button } from "../ui";
 import { classNames } from "../utils";
 import { FormEvent, useRef } from "react";
-import { MortgageFormData, MortgageType } from "../types";
+import { MortgageFormData, MortgageType } from "../mortgage";
 
 interface MortgageCalculatorProps {
   className?: string;
@@ -72,7 +72,7 @@ export const MortgageCalculator = ({
       <Form
         ref={form}
         onSubmit={handleCalculate}
-        className={classNames("grid gap-300", "md:grid-cols-2")}
+        className={classNames("grid gap-300 items-start", "md:grid-cols-2")}
       >
         <NumberField
           isRequired

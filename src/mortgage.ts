@@ -39,3 +39,8 @@ export function calculateRepayments(data: MortgageFormData): Repayments {
     totalRepayment: parseFloat(totalRepayment.toFixed(2)),
   };
 }
+
+export const formatter = new Intl.NumberFormat("en-GB", {
+  style: "currency",
+  currency: "GBP",
+});
