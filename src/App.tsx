@@ -1,39 +1,14 @@
-import {
-  MortgageCalculator,
-  MortgageFormData,
-  Repayments,
-  Results,
-} from "./components";
-import { classNames } from "./utils";
 import { useState } from "react";
+import { MortgageCalculator, Results } from "./components";
+import { calculateRepayments, MortgageFormData, Repayments } from "./mortgage";
+import { classNames } from "./utils";
 
 function App() {
   const [repayments, setRepayments] = useState<Repayments | null>(null);
 
   const handleCalculate = (data: MortgageFormData) => {
-    const { mortgageAmount, mortgageTerm, interestRate, mortgageType } = data;
-
-    const termInMonths = mortgageTerm * 12;
-    const monthlyInterestRate = interestRate / 100 / 12;
-
-    let monthlyPayment: number;
-    let totalRepayment: number;
-
-    if (mortgageType === "repayment") {
-      monthlyPayment =
-        (mortgageAmount * monthlyInterestRate) /
-        (1 - Math.pow(1 + monthlyInterestRate, -termInMonths));
-
-      totalRepayment = monthlyPayment * termInMonths;
-    } else {
-      monthlyPayment = mortgageAmount * monthlyInterestRate;
-      totalRepayment = monthlyPayment * termInMonths + mortgageAmount;
-    }
-
-    setRepayments({
-      monthlyPayment: parseFloat(monthlyPayment.toFixed(2)),
-      totalRepayment: parseFloat(totalRepayment.toFixed(2)),
-    });
+    const result = calculateRepayments(data);
+    setRepayments(result);
   };
 
   const handleClear = () => {

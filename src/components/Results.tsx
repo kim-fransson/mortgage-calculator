@@ -1,10 +1,6 @@
 import illustrationEmpty from "../assets/illustration-empty.svg";
+import { Repayments } from "../mortgage";
 import { classNames } from "../utils";
-
-export type Repayments = {
-  monthlyPayment: number;
-  totalRepayment: number;
-};
 
 interface ResultsProps {
   repayments: Repayments | null;

@@ -4,15 +4,7 @@ import { Form } from "react-aria-components";
 import { NumberField, Radio, RadioGroup, Button } from "../ui";
 import { classNames } from "../utils";
 import { FormEvent, useRef } from "react";
-
-type MortgageType = "repayment" | "interests";
-
-export type MortgageFormData = {
-  mortgageAmount: number;
-  mortgageTerm: number;
-  interestRate: number;
-  mortgageType: MortgageType;
-};
+import { MortgageFormData, MortgageType } from "../types";
 
 interface MortgageCalculatorProps {
   className?: string;
